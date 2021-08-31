@@ -11,3 +11,13 @@ function databaseInitialize() {
         db.addCollection('notes');
     }
 }
+
+function loadCollection(collecction) {
+    return new Promise((resolve, reject) => {
+        db.loadDatabase({}, () => {
+            const _collection = db.getCollection(collecction) || db.addCollection(collecction);
+            resolve(_collection);
+        })
+
+    });
+}
